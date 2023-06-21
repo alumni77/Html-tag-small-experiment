@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>title</title>
+</head>
+<body>
+    <script>
+        let a=+prompt('请输入第一个参数a')
+        let b=+prompt('请输入第二个参数b')
+        let c=+prompt('请输入第三个参数c')
+        if(a===0)
+        {
+            if(b===0)
+            alert('无解')
+            else alert(`x=${-c/b}`)
+        }
+        else
+        {
+            let delta=b*b-4*a*c
+            if(delta<0) alert('无实根')
+            else{
+                s1=(-b+Math.sqrt(delta))/(2*a);
+                s2=(-b-Math.sqrt(delta))/(2*a);
+                alert(`x1=${s1},x2=${s2}`)
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>title</title>
+</head>
+<body>
+    用户名：<input type="text"><br>
+    密码：<input type="password"><br>
+    确认密码：<input type="text"><br>
+    证件号码：<input type="text"><br>
+    <input type="checkbox">我已阅读并同意协议<br>
+    <button onclick="check()">注册</button>
+    <script>
+        function check()
+        {
+            const input =document.querySelectorAll('input')
+            const username=input[0].value
+            const reg=/^[A-z0-9-_]{6,10}$/
+            if(!reg.test(username))
+            {
+                alert('用户名不合法')
+                return 
+            }
+            const pwd1=input[1].value
+            const pwd2=input[2].value
+            if(!reg.test(pwd1))
+            {
+                alert('密码不合法')
+                return 
+            }
+            if(pwd1!==pwd2)
+            {
+                alert('密码不一致')
+                return 
+            }
+            const sfz=input[3].value
+            const regsfz=/^[1-9]\d{5}(19|20)\d{2}((0[1-9]|1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/
+            if(!regsfz.test(sfz))
+            {
+                alert('身份证不合法')
+                return 
+            }
+            const year=sfz.substring(6,10)
+            const age=2023-year
+            if(age<18)
+            {
+                alert('未满18，无法注册')
+                return
+            }
+            const isChecked=input[4].checked
+            if(!isChecked)
+            {
+                alert('请勾选')
+                return
+            }
+            const person ={}
+            person.username=username
+            person.password=pwd1
+            person.sfz=sfz
+            person.age=age
+            const json=JSON.stringify(person)
+            console.log(json)
+        }
+    </script>
+</body>
+</html>
